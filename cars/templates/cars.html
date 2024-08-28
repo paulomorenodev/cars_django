@@ -7,7 +7,9 @@
 </head>
 {% block content %}
 <body>
-    <h2>Carro 1: {{ cars.model }}</h2>
+    {% for car in cars %}
+      <h2> {{ car.model }} - {{ car.model_year }} </h2>
+    {% endfor %}
 </body>
 {% endblock %}
 </html>
