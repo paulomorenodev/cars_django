@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
-from cars.forms import CarForm
 from cars.models import Car
+from cars.forms import CardModelForm
 
 def cars_view(request):
     cars = Car.objects.all().order_by('model_year')#com o sinal de menos antes do model inverte a seleção
@@ -16,11 +16,11 @@ def cars_view(request):
 
 def new_car_view(request):
     if request.method == 'POST':
-        new_car_form = CarForm(request.POST, request.FILES)
+        new_car_form = CardModelForm(request.POST, request.FILES)
         #print(new_car_form.data)
         if new_car_form.is_valid():
             new_car_form.save()
             return redirect('cars_list')
     else:
-        new_car_form = CarForm()
+        new_car_form = CardModelForm()
     return render(request, 'new_car.html', { 'new_car_form' : new_car_form})
