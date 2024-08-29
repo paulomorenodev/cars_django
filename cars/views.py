@@ -1,5 +1,6 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from cars.forms import CarForm
 from cars.models import Car
 
 def cars_view(request):
@@ -11,5 +12,15 @@ def cars_view(request):
 # outra opção abaixo para o codigo
 #Car.objects.filter(model__contains=search) if search else Car.objects.all() 
 
-
     return render(request,'cars.html',{'cars': cars})
+
+def new_car_view(request):
+    if request.method == 'POST':
+        new_car_form = CarForm(request.POST, request.FILES)
+        #print(new_car_form.data)
+        if new_car_form.is_valid():
+            new_car_form.save()
+            return redirect('cars_list')
+    else:
+        new_car_form = CarForm()
+    return render(request, 'new_car.html', { 'new_car_form' : new_car_form})
