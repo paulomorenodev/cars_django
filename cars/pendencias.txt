@@ -1,0 +1,4 @@
+Na aula 66 ficou a pendencia abaixo.:
+
+Ao salvar no BD deu erro somente ao salvar a foto do carro.
+ValueError: The 'photo' attribute has no file associated with it
