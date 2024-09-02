@@ -11,6 +11,15 @@ django = "^5.1"
 pillow = "^10.4.0"
 
 
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.13.0"
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+ruff = "^0.6.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+run = 'python manage.py runserver'
